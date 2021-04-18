@@ -8,16 +8,24 @@ public class HUD : MonoBehaviour {
 
 	public Text scoreText;
 	private int score;
+
+    public bool playerDead;
+
 	// Use this for initialization
 	void Start () {
 		score = 0;
+        playerDead = false;
 		UpdateScore ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		score++;
-		UpdateScore ();
+
+        if (playerDead == false)
+        {
+            score++;
+            UpdateScore();
+        }
 	}
 
 	public void AddScore (int newScoreValue)

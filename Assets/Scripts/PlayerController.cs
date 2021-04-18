@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 [Serializable]
 public class PlayerController : MonoBehaviour {
-	
+
+    public HUD hud;
+
 	private float moveSpeed = 6.0f;
 	private float jumpHeight = 10.0f;
 
@@ -36,7 +38,10 @@ public class PlayerController : MonoBehaviour {
     int genomesMax = 10000;
 
 	// Use this for initialization
-	void Start () {	
+	void Start () {
+
+        hud.playerDead = false;
+
 		GetComponent<BoxCollider2D> ().enabled = false;
 
 		isLearning = (genomes.Count < genomesMax);
@@ -152,8 +157,10 @@ public class PlayerController : MonoBehaviour {
 
 	// Called when a collision happens
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.name.StartsWith ("cactus")) {			
-			GameObject.Find ("Canvas").GetComponent<Canvas> ().enabled = true;
+		if (coll.gameObject.name.StartsWith ("cactus")) {
+            hud.playerDead = true;
+
+            GameObject.Find ("Canvas").GetComponent<Canvas> ().enabled = true;
 			Time.timeScale = 0;
 
 			Genome genome = new Genome {
@@ -173,6 +180,8 @@ public class PlayerController : MonoBehaviour {
 		} else if (coll.gameObject.name.StartsWith ("Ground")) {
 			isGrounded = true;
 		}
+
+        
 	}
 
 	Cactus getNextNearestCactus() {
