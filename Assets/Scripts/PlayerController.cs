@@ -33,17 +33,19 @@ public class PlayerController : MonoBehaviour {
 
 	private bool isLearning = true; //If a real player is playing the game
 
+    int genomesMax = 10000;
+
 	// Use this for initialization
 	void Start () {	
 		GetComponent<BoxCollider2D> ().enabled = false;
 
-		isLearning = (genomes.Count < 4);
+		isLearning = (genomes.Count < genomesMax);
 		if (!isLearning && Utils.actualGenome >= genomes.Count) {
 			print ("Acabou de jogar os genomas");
 			Utils.clearCrossOversFolder();
 			genomes = Utils.loadAllGenomes (); //Force GENOMES root folder
 
-			List<Genome> bestGenomes = Utils.naturalSelection (genomes, 4);
+			List<Genome> bestGenomes = Utils.naturalSelection (genomes, genomesMax);
 			Utils.clearGenomesFolder();
 
 			for (int i = 0; i < bestGenomes.Count; i++) {
@@ -51,8 +53,8 @@ public class PlayerController : MonoBehaviour {
 			}
 				
 			//New Crossovers + Mutations
-			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 4; j++) {
+			for (int i = 0; i < genomesMax; i++) {
+				for (int j = 0; j < genomesMax; j++) {
 					if (i == j) {
 						continue;
 					}						
