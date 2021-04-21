@@ -116,6 +116,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (moveSpeed < 12)
+        {
+            moveSpeed = 6 + hud.score / 1000f;
+        }
+
         spriteInterval -= Time.deltaTime;
         if (spriteInterval < 0)
         {
@@ -155,7 +160,7 @@ public class PlayerController : MonoBehaviour
                 Jumped jump = new Jumped
                 {
                     nearestCactus = c,
-                    distanceToNearestCactus = c.position - GetComponent<Rigidbody2D>().position
+                    distanceToNearestCactus = GetComponent<Rigidbody2D>().position
                 };
 
                 jumps.Add(jump);
@@ -184,7 +189,6 @@ public class PlayerController : MonoBehaviour
     {
         if (coll.gameObject.name.StartsWith("cactus"))
         {
-            //hud.playerDead = true;
             hud.AddScore(-300);
 
             //Genome genome = new Genome

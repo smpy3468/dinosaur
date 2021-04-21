@@ -8,7 +8,7 @@ public class HUD : MonoBehaviour
 
 
     public Text scoreText;
-    private int score;
+    public int score;
 
     public bool playerDead;
 
