@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{ebf0422b-3cb6-4db2-8286-4885c5a78cf5}">
+		<property name="assetPath">
+			<value>小恐龍配樂 lv.4.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>66.859160997732431</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dd910ac1-08f1-44c3-b008-4f80bce3a58c}</destination>
+		</relationship>
+	</object>
+</objects>
